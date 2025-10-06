@@ -3,3 +3,144 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+nav{
+    height: 12.408vh;
+    display: flex;
+    background-color: #255296;
+    font-family: "Itim", cursive;
+    color: white;
+    justify-content: left;
+}
+
+nav h1{
+    padding-top: 2.3148vh;
+    margin-bottom: 2.3148vh;
+    margin-inline: 10.9375vw;
+    font-size: 50px;
+    font-weight: 150;
+}
+
+.tabela-periodica{
+    height: 54.26vh;
+    margin-left: 10.78125vw;
+    margin-right: 32.96875vw;
+    margin-top: 12.5vh;
+    background-color: #93959F;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 4.8148vh;
+    padding-left: 1.5608vw;
+    padding-right: 4.0052vw;
+}
+
+.elemento{
+    height: 8.85665529%;
+    width: 4.92037037%;
+    border: 1px solid black;
+    background-color: red;
+    font-size: 5px;
+}
+
+.elemento a{
+    font-size: 25px;
+}
+
+.point-1{
+    height: 8.85665529%;
+    width: 4.92037037%;
+    border: 1px solid black;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 2;
+}
+
+.point-1 h1{
+    font-size: 30px;
+}
+
+.point-2{
+    height: 8.85665529%;
+    width: 4.92037037%;
+    border: 1px solid black;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 4;
+}
+
+.point-2 h1{
+    font-size: 30px;
+}
+.elemento:nth-child(n + 72):nth-child(-n + 90){
+    background-color: yellow;
+    order: 3;
+}
+
+.elemento:nth-child(n + 104):nth-child(-n + 121){
+    background-color: purple;
+    order: 5;
+}
+
+
+.elemento:nth-child(n + 59):nth-child(-n + 73){
+    background-color: blue;
+    margin-top: 4.3271%;
+    order: 6;
+}
+
+.elemento:nth-child(59){
+    margin-left: 12.332%;
+}
+
+.elemento:nth-child(73){
+    margin-right: 13%;
+}
+
+.elemento:nth-child(n + 91):nth-child(-n + 105){
+    background-color: pink;
+    order: 7;
+    margin-bottom: 3.804%;
+}
+
+.elemento:nth-child(91){
+    margin-left: 12.332%;
+}
+
+.elemento:nth-child(3){
+    margin-right: 45vw;
+}
+
+.elemento:nth-child(6){
+    margin-right: 30vw;
+}
+.elemento:nth-child(14){
+    margin-right: 30vw;
+}
+
+.elemento:nth-child(32){
+    margin-right: 5vw;
+}
+
+.elemento:nth-child(50){
+    margin-right: 5vw;
+}
+
+.elemento:nth-child(82){
+    margin-right: 5vw;
+}
+
+.elemento:nth-child(114){
+    margin-right: 5vw;
+}
+
+
+
+
+
+
+
+
