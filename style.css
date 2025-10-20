@@ -128,35 +128,35 @@ nav h1{
     margin-right: 47.36vw;
     background-color: #AF46FF;
 }
-.elemento:nth-child(4), .elemento:nth-child(12), .elemento:nth-child(20), .elemento:nth-child(38), .elemento:nth-child(56), .elemento:nth-child(88){
+.gases-nobres{
     background-color: #1BC2FF;
 }
 
-.elemento:nth-child(5), .elemento:nth-child(13), .elemento:nth-child(21), .elemento:nth-child(39), .elemento:nth-child(57), .elemento:nth-child(89){
+.metais-alcalinos{
     background-color: #FF1B1B;
 }
 
-.elemento:nth-child(6), .elemento:nth-child(14), .elemento:nth-child(22), .elemento:nth-child(40), .elemento:nth-child(58), .elemento:nth-child(90){
+.metais-alcalinoterrosos{
     background-color: #FF8D1B;
 }
 
-.elemento:nth-child(n + 23):nth-child(-n + 32), .elemento:nth-child(n + 41):nth-child(-n + 50), .elemento:nth-child(n + 74):nth-child(-n + 82), .elemento:nth-child(n + 106):nth-child(-n + 114){
+.metais-de-transicao{
     background-color: #FFDD1B;
 }
 
-.elemento:nth-child(7), .elemento:nth-child(16), .elemento:nth-child(34), .elemento:nth-child(35), .elemento:nth-child(53), .elemento:nth-child(54), .elemento:nth-child(86){
+.semimetais{
     background-color: #42CF71;
 }
 
-.elemento:nth-child(15), .elemento:nth-child(33), .elemento:nth-child(51), .elemento:nth-child(52), .elemento:nth-child(83), .elemento:nth-child(84), .elemento:nth-child(85){
+.metais-pos-transicao{
     background-color: #B2D225;
 }
 
-.elemento:nth-child(n + 115):nth-child(-n + 120){
+.propriedades-desconhecidas{
     background-color: #CDC3B9;
 }
 
-.elemento:nth-child(n + 8):nth-child(-n + 10), .elemento:nth-child(17), .elemento:nth-child(18), .elemento:nth-child(36){
+.ametais-reativos{
     background-color: #AF46FF;
 }
 
@@ -209,12 +209,12 @@ nav h1{
     margin-left: 11%;
 }
 
-.elemento:nth-child(n + 59):nth-child(-n + 73){
+.lantanideos:nth-child(n + 59):nth-child(-n + 73){
     margin-top: 2%;
     background-color: #1BFF58;
     order: 6;
 }
-.elemento:nth-child(n + 91):nth-child(-n + 105){
+.actinideos:nth-child(n + 91):nth-child(-n + 105){
     background-color: #196262;
     order: 7;
 }
