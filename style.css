@@ -218,3 +218,12 @@ nav h1{
     background-color: #196262;
     order: 7;
 }
+
+.tabela-indicators input[type="checkbox"]:after {
+    content: "✓"; /* Símbolo de check */
+    font-size: 16px;
+    color: green;
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
