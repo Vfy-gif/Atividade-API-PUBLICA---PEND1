@@ -17,6 +17,7 @@ async function getElements() {
         let nome_elemento   = document.createElement('h2')
         let massa_elemento  = document.createElement('h3')
 
+
         elemento.classList.add('elemento')
         elemento.id                 = elementos[i].name
         numero_elemento.textContent = elementos[i].number
