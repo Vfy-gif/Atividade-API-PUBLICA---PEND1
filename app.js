@@ -1,124 +1,177 @@
 'use strict'
 
-const tabela_periodica = document.getElementById('tabela_periodica')
+const tabela_periodica          = document.getElementById('tabela_periodica')
 
-async function getElements() {
-    const url = 'https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json'
-    const response = await fetch(url)
-    const dados = await response.json()
+const checkbox_metais_alcalinos                 = document.getElementById('checkbox-metais-alcalinos')
+const checkbox_semimetais                       = document.getElementById('checkbox-semimetais')
+const checkbox_actinideos                       = document.getElementById('checkbox-actinideos')
+const checkbox_metais_alcalinoterrosos          = document.getElementById('checkbox-metais-alcalinoterrosos')
+const checkbox_ametais_reativos                 = document.getElementById('checkbox-ametais-reativos')
+const checkbox_propriedades_desconhecidas       = document.getElementById('checkbox-propriedades-desconhecidas')
+const checkbox_metais_de_transicao              = document.getElementById('checkbox-metais-de-transicao')
+const checkbox_gases_nobres                     = document.getElementById('checkbox-gases-nobres')
+const checkbox_metais_pos_transicao             = document.getElementById('checkbox-metais-pos-transicao')
+const checkbox_lantanideos                      = document.getElementById('checkbox-lantanideos')
 
-    const elementos = dados.elements
-    let i = 0
 
-    while (i < 118) {
-        let elemento = document.createElement('div')
-        let numero_elemento = document.createElement('h1')
-        let sigla_elemento = document.createElement('a')
-        let nome_elemento = document.createElement('h2')
-        let massa_elemento = document.createElement('h3')
 
-        elemento.classList.add('elemento')
 
-        if (elementos[i].group == 1) {
-            elemento.classList.add('metais-alcalinos')
+checkbox_metais_alcalinos.addEventListener('change', function () {
+    if (this.checked) {
+        const elements_number = [4,12,20,38,56,88]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
         }
-        if (elementos[i].group == 2) {
-            elemento.classList.add('metais-alcalinoterrosos')
+    } else {
+         const elements_number = [4,12,20,38,56,88]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#FF1B1B'
         }
-        if (elementos[i].group >= 3 && elementos[i].group <= 12) {
-            if (elementos[i].number >= 21 && elementos[i].number <= 30 || elementos[i].number >= 39 && elementos[i].number <= 48 || elementos[i].number >= 72 && elementos[i].number <= 80 || elementos[i].number >= 104 && elementos[i].number <= 112) {
-                elemento.classList.add('metais-de-transicao')
-            }
-            if(elementos[i].number >= 57 && elementos[i].number <= 71){
-                elemento.classList.add('lantanideos')
-            }
-            if(elementos[i].number >= 89 && elementos[i].number <= 103){
-                elemento.classList.add('actinideos')
-            }
-        }
-        if(elementos[i].group == 13){
-            if(elementos[i].number == 5){
-                elemento.classList.add('semimetais')
-            }
-            if(elementos[i].number == 13 || elementos[i].number == 31 || elementos[i].number == 49 || elementos[i].number == 81){
-                elemento.classList.add('metais-pos-transicao')
-            }
-            if(elementos[i].number == 113){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-        if(elementos[i].group == 14){
-            if(elementos[i].number == 6){
-                elemento.classList.add('ametais-reativos')
-            }
-            if(elementos[i].number == 14 || elementos[i].number == 32){
-                elemento.classList.add('semimetais')
-            }
-            if(elementos[i].number == 50 || elementos[i].number == 82){
-                elemento.classList.add('metais-pos-transicao')
-            }
-            if(elementos[i].number == 114){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-        if(elementos[i].group == 15){
-            if(elementos[i].number == 7 || elementos[i].number == 15){
-                elemento.classList.add('ametais-reativos')
-            }
-            if(elementos[i].number == 33 || elementos[i].number == 51){
-                elemento.classList.add('semimetais')
-            }
-            if(elementos[i].number == 83){
-                elemento.classList.add('metais-pos-transicao')
-            }
-            if(elementos[i].number == 115){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-        if(elementos[i].group == 16){
-            if(elementos[i].number == 8 || elementos[i].number == 16 || elementos[i].number == 34){
-                elemento.classList.add('ametais-reativos')
-            }
-            if(elementos[i].number == 52 || elementos[i].number == 84){
-                elemento.classList.add('semimetais')
-            }
-            if(elementos[i].number == 116){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-        if(elementos[i].group == 17){
-            if(elementos[i].number == 9 || elementos[i].number == 17 || elementos[i].number == 35 || elementos[i].number == 53){
-                elemento.classList.add('ametais-reativos')
-            }
-            if(elementos[i].number == 85){
-                elemento.classList.add('metais-pos-transicao')
-            }
-            if(elementos[i].number == 117){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-        if(elementos[i].group == 18){
-            if(elementos[i].number == 2 || elementos[i].number == 10 || elementos[i].number == 18 || elementos[i].number == 36 || elementos[i].number == 54 || elementos[i].number == 86 ){
-                elemento.classList.add('gases-nobres')
-            }
-            if(elementos[i].number == 118){
-                elemento.classList.add('propriedades-desconhecidas')
-            }
-        }
-
-        elemento.id = elementos[i].name
-        numero_elemento.textContent = elementos[i].number
-        sigla_elemento.textContent = elementos[i].symbol
-        nome_elemento.textContent = elementos[i].name
-        massa_elemento.textContent = elementos[i].atomic_mass
-
-        tabela_periodica.appendChild(elemento)
-        elemento.appendChild(numero_elemento)
-        elemento.appendChild(sigla_elemento)
-        elemento.appendChild(nome_elemento)
-        elemento.appendChild(massa_elemento)
-        i++
     }
-}
+})
 
-getElements()
+checkbox_semimetais.addEventListener('change', function() {
+    if(this.checked){
+        const elements_number = [6,15,33,34,52,53]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [6,15,33,34,52,53]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#42CF71'
+        }
+    }
+})
+
+checkbox_actinideos.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    }else{
+        const elements_number = [58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#1BFF58'
+        }
+    }
+})
+
+checkbox_metais_alcalinoterrosos.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [5,13,21,39,57,89]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    }else{
+        const elements_number = [5,13,21,39,57,89]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#FF8D1B'
+        }
+    }
+})
+
+checkbox_ametais_reativos.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [2,7,8,9,10,16,17,18,35,36,54]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    }else{
+        const elements_number = [2,7,8,9,10,16,17,18,35,36,54]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#AF46FF'
+        }
+    }
+})
+
+checkbox_propriedades_desconhecidas.addEventListener('change', function() {
+    if(this.checked){
+        const elements_number = [110,111,112,113,114,115,116,117,118,119]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [110,111,112,113,114,115,116,117,118,119]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#CDC3B9'
+        }
+    }
+})
+
+checkbox_metais_de_transicao.addEventListener('change', function() {
+    if(this.checked){
+        const elements_number = [22,23,24,25,26,27,28,29,30,31,40,41,42,43,44,45,46,47,48,49,73,74,75,76,77,78,79,80,81,105,106,107,108,109]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [22,23,24,25,26,27,28,29,30,31,40,41,42,43,44,45,46,47,48,49,73,74,75,76,77,78,79,80,81,105,106,107,108,109]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#CDC3B9'
+        }
+    }
+})
+
+checkbox_gases_nobres.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [3,11,19,37,55,87]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [3,11,19,37,55,87]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#1BC2FF'
+        }
+    }
+})
+
+checkbox_metais_pos_transicao.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [14,32,50,51,82,83,84,85,86]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [14,32,50,51,82,83,84,85,86]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#B2D225'
+        }
+    }
+})
+
+checkbox_lantanideos.addEventListener('change', function () {
+    if(this.checked){
+        const elements_number = [90,91,92,93,94,95,96,97,98,99,100,101,102,103,104]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = 'blue'
+        }
+    } else {
+        const elements_number = [90,91,92,93,94,95,96,97,98,99,100,101,102,103,104]
+        let i = 0
+        for(i = 0; i < elements_number.length; i++){
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#196262'
+        }
+    }
+})

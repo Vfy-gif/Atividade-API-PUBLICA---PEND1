@@ -1,14 +1,14 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #D9D2D2;
 }
 
-nav{
+nav {
     height: 12.408vh;
     display: flex;
     background-color: #255296;
@@ -17,7 +17,7 @@ nav{
     justify-content: left;
 }
 
-nav h1{
+nav h1 {
     padding-top: 2.3148vh;
     margin-bottom: 2.3148vh;
     margin-inline: 10.9375vw;
@@ -25,7 +25,7 @@ nav h1{
     font-weight: 150;
 }
 
-.tabela-periodica{
+.tabela-periodica {
     height: 56vh;
     width: 60vw;
     margin-left: 10.78125vw;
@@ -39,10 +39,9 @@ nav h1{
     padding-right: 3.6vw;
     padding-bottom: 56vh;
     box-shadow: 0px 10px 50px 0px;
-
 }
 
-.elemento{
+.elemento {
     height: 8.85665529%;
     width: 4.92037037%;
     border: 1px solid black;
@@ -58,37 +57,39 @@ nav h1{
     transition: 0.2s;
 }
 
-.elemento:hover{
+.elemento:hover {
     transform: scale(1.3);
     box-shadow: 0px 10px 50px 0px;
 }
 
-.elemento a{
+.elemento a {
     position: relative;
     top: -10px;
     font-size: 25px;
 }
 
-.elemento h1{
+.elemento h1 {
     margin-left: 14px;
 }
 
-.elemento h2{
+.elemento h2 {
     margin-top: -20px;
 }
 
-.elemento h3{
+.elemento h3 {
     margin-top: -6px;
 }
 
-.elemento a,h2,h3{
+.elemento a,
+h2,
+h3 {
     margin-left: 45px;
 }
 
 
-.point-1{
-    height: 8.85665529%;
-    width: 4.92037037%;
+.point-1 {
+    height: 52px;
+    width: 53px;
     border: 1px solid black;
     background-color: #1BFF58;
     display: flex;
@@ -98,14 +99,14 @@ nav h1{
     padding-bottom: 50px;
 }
 
-.point-1 h1{
+.point-1 h1 {
     margin-top: 40px;
     font-size: 30px;
 }
 
-.point-2{
-    height: 8.85665529%;
-    width: 4.92037037%;
+.point-2 {
+    height: 52px;
+    width: 53px;
     border: 1px solid black;
     background-color: #196262;
     display: flex;
@@ -115,7 +116,7 @@ nav h1{
     padding-bottom: 50px;
 }
 
-.point-2 h1{
+.point-2 h1 {
     margin-top: 40px;
     font-size: 30px;
 }
@@ -124,106 +125,147 @@ nav h1{
     CORES DOS ELEMENTOS
 */
 
-.elemento:nth-child(3){
+.elemento:nth-child(3) {
     margin-right: 47.36vw;
-    background-color: #AF46FF;
+    background-color: AF46FF;
 }
-.gases-nobres{
+
+.gases-nobres {
     background-color: #1BC2FF;
 }
 
-.metais-alcalinos{
+.metais-alcalinos {
     background-color: #FF1B1B;
 }
 
-.metais-alcalinoterrosos{
+.metais-alcalinoterrosos {
     background-color: #FF8D1B;
 }
 
-.metais-de-transicao{
+.metais-de-transicao {
     background-color: #FFDD1B;
 }
 
-.semimetais{
+.semimetais {
     background-color: #42CF71;
 }
 
-.metais-pos-transicao{
+.metais-pos-transicao {
     background-color: #B2D225;
 }
 
-.propriedades-desconhecidas{
+.propriedades-desconhecidas {
     background-color: #CDC3B9;
 }
 
-.ametais-reativos{
+.ametais-reativos {
     background-color: #AF46FF;
 }
 
-.elemento:nth-child(11), .elemento:nth-child(19), .elemento:nth-child(37), .elemento:nth-child(55), .elemento:nth-child(87){
-    background-color: #FB1BFF;
+.elemento:nth-child(11),
+.elemento:nth-child(19),
+.elemento:nth-child(37),
+.elemento:nth-child(55) {
+    background-color: #AF46FF;
 }
 
-.elemento:nth-child(6){
+.elemento:nth-child(6) {
     margin-right: 30.7vw;
 }
 
-.elemento:nth-child(14){
+.elemento:nth-child(14) {
     margin-right: 30.7vw;
 }
 
-.elemento:nth-child(32){
+.elemento:nth-child(32),
+.elemento:nth-child(50),
+.elemento:nth-child(82),
+.elemento:nth-child(114) {
     margin-right: 3vw;
 }
 
-
-.elemento:nth-child(50){
-    margin-right: 3vw;
-}
-
-.elemento:nth-child(82){
-    margin-right: 3vw;
-}
-
-.elemento:nth-child(114){
-    margin-right: 3vw;
-}
-
-.elemento:nth-child(n + 72):nth-child(-n + 90){
+.elemento:nth-child(n + 72):nth-child(-n + 90) {
     order: 3;
 }
 
-.elemento:nth-child(n + 104):nth-child(-n + 121){
+.elemento:nth-child(n + 104):nth-child(-n + 121) {
     order: 5;
 }
 
-.elemento:nth-child(59){
+.elemento:nth-child(59) {
     margin-left: 11%;
 }
 
-.elemento:nth-child(73){
+.elemento:nth-child(73) {
     margin-right: 13%;
 }
 
-.elemento:nth-child(91){
+.elemento:nth-child(91) {
     margin-left: 11%;
 }
 
-.lantanideos:nth-child(n + 59):nth-child(-n + 73){
+.lantanideos:nth-child(n + 59):nth-child(-n + 73) {
     margin-top: 2%;
     background-color: #1BFF58;
     order: 6;
 }
-.actinideos:nth-child(n + 91):nth-child(-n + 105){
+
+.actinideos:nth-child(n + 91):nth-child(-n + 105) {
     background-color: #196262;
     order: 7;
 }
 
-.tabela-indicators input[type="checkbox"]:after {
-    content: "✓"; /* Símbolo de check */
-    font-size: 16px;
-    color: green;
-    position: absolute;
-    top: 0;
-    left: 5px;
+@media (max-width: 1440px) {
+
+    .tabela-periodica {
+        height: 72vh;
+        width: 75vw;
+        margin-left: 3vw;
+        margin-right: 32.96875vw;
+        margin-top: 9.5vh;
+        background-color: #93959F;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 4.8148vh;
+        padding-left: 1.5608vw;
+        padding-right: 3.6vw;
+        padding-bottom: 56vh;
+        box-shadow: 0px 10px 50px 0px;
+    }
+
+    .elemento:nth-child(3) {
+        margin-right: 89%;
+        background-color: #AF46FF;
+    }
+
+    .elemento:nth-child(6) {
+        margin-right: 57.4%;
+    }
+
+    .elemento:nth-child(14) {
+        margin-right: 57.4%;
+    }
+
+    .elemento:nth-child(32),
+    .elemento:nth-child(50),
+    .elemento:nth-child(82),
+    .elemento:nth-child(114) {
+        margin-right: 3.3vw;
+    }
+
+.elemento:nth-child(73) {
+    margin-right: 6%;
+}
+
+}
+
+
+
+
+
+.tabela-indicators {
+    width: 60vw;
+    display: grid;
+    font-size: 10px;
+    background-color: blue;
 }
