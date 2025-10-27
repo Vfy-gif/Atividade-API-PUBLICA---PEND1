@@ -6517,7 +6517,6 @@ input_search.addEventListener('click', function () {
             elemento.appendChild(elemento_nome)
 
             elemento.addEventListener('click', function (event) {
-                console.log('goiaba')
                 event.stopPropagation(); 
             })
             i++
