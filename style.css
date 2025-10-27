@@ -220,7 +220,7 @@ h3 {
     .tabela-periodica {
         height: 70vh;
         width: 75vw;
-        margin-left: 3vw;
+        margin-left: 2vw;
         margin-right: 32.96875vw;
         margin-top: 1.5vh;
         background-color: #93959F;
@@ -343,4 +343,29 @@ h3 {
 
 .tabela-indicators input[type=checkbox]:checked{
     background-color: hsla(0, 0%, 0%, 1);
+}
+
+.search {
+    height: 5%;
+    width: 20%;
+    justify-self: end;
+    position: absolute;
+    background-color: #255296;
+    margin-right: 1vw;
+    margin-top: 2vh;
+    object-fit: contain;
+    border-radius: 20px;
+}
+.search input {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    text-indent: 20px;
+}
+
+.search img {
+    height: 70%;
+    margin-left: 90%;
 }
