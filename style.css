@@ -218,11 +218,11 @@ h3 {
 @media (max-width: 1440px) {
 
     .tabela-periodica {
-        height: 72vh;
+        height: 70vh;
         width: 75vw;
         margin-left: 3vw;
         margin-right: 32.96875vw;
-        margin-top: 9.5vh;
+        margin-top: 1.5vh;
         background-color: #93959F;
         display: flex;
         flex-wrap: wrap;
@@ -264,8 +264,83 @@ h3 {
 
 
 .tabela-indicators {
-    width: 60vw;
+    width: 90vw;
     display: grid;
+    grid-template-areas: 
+        "f1 f2 f7 f8 f13 f14 f19 f20"
+        "f3 f4 f9 f10 f15 f16 f21 f22"
+        "f5 f6 f11 f12 f17 f18 f23 f24";
     font-size: 10px;
-    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+.tabela-indicators h1{
+    font-weight: 100;
+    font-family: "Inter", sans-serif;
+    margin-right: 100px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.tabela-indicators input:nth-child(1) { grid-area: f1; } 
+.tabela-indicators h1:nth-child(2) { grid-area: f2; }     
+.tabela-indicators input:nth-child(7) { grid-area: f7; }   
+.tabela-indicators h1:nth-child(8) { grid-area: f8; }     
+.tabela-indicators input:nth-child(13) { grid-area: f13; } 
+.tabela-indicators h1:nth-child(14) { grid-area: f14; }  
+.tabela-indicators input:nth-child(19) { grid-area: f19; } 
+.tabela-indicators h1:nth-child(20) { grid-area: f20; }  
+.tabela-indicators input:nth-child(3) { grid-area: f3; }   
+.tabela-indicators h1:nth-child(4) { grid-area: f4; }    
+.tabela-indicators input:nth-child(9) { grid-area: f9; }   
+.tabela-indicators h1:nth-child(10) { grid-area: f10; }   
+.tabela-indicators input:nth-child(15) { grid-area: f15; } 
+.tabela-indicators h1:nth-child(16) { grid-area: f16; }   
+.tabela-indicators input:nth-child(21) { grid-area: f21; }
+.tabela-indicators h1:nth-child(22) { grid-area: f22; }  
+.tabela-indicators input:nth-child(5) { grid-area: f5; }   
+.tabela-indicators h1:nth-child(6) { grid-area: f6; }     
+.tabela-indicators input:nth-child(11) { grid-area: f11; }  
+.tabela-indicators h1:nth-child(12) { grid-area: f12; }   
+.tabela-indicators input:nth-child(17) { grid-area: f17; } 
+.tabela-indicators h1:nth-child(18) { grid-area: f18; }   
+.tabela-indicators input:nth-child(23) { grid-area: f23; } 
+.tabela-indicators h1:nth-child(24) { grid-area: f24; }   
+.tabela-indicators input:nth-child(1) { grid-area: f1; }   
+.tabela-indicators h1:nth-child(2) { grid-area: f2; }     
+.tabela-indicators input:nth-child(3) { grid-area: f3; }   
+.tabela-indicators h1:nth-child(4) { grid-area: f4; }     
+.tabela-indicators input:nth-child(5) { grid-area: f5; }   
+.tabela-indicators h1:nth-child(6) { grid-area: f6; }     
+.tabela-indicators input:nth-child(7) { grid-area: f7; }   
+.tabela-indicators h1:nth-child(8) { grid-area: f8; }     
+.tabela-indicators input:nth-child(9) { grid-area: f9; }   
+.tabela-indicators h1:nth-child(10) { grid-area: f10; }    
+.tabela-indicators input:nth-child(11) { grid-area: f11; }  
+.tabela-indicators h1:nth-child(12) { grid-area: f12; }   
+.tabela-indicators input:nth-child(13) { grid-area: f13; } 
+.tabela-indicators h1:nth-child(14) { grid-area: f14; }   
+.tabela-indicators input:nth-child(15) { grid-area: f15; } 
+.tabela-indicators h1:nth-child(16) { grid-area: f16; }   
+.tabela-indicators input:nth-child(17) { grid-area: f17; } 
+.tabela-indicators h1:nth-child(18) { grid-area: f18; }   
+.tabela-indicators input:nth-child(19) { grid-area: f19; } 
+.tabela-indicators h1:nth-child(20) { grid-area: f20; }
+
+.tabela-indicators input[type=checkbox]{
+    appearance: none;
+    background-color: hsla(0, 0%, 0%, 0.30);
+    border: 3px solid black;
+    border-radius: 100px;
+    height: 28.37px;
+    width: 28.37px;
+    transition: 0.5s;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.tabela-indicators input[type=checkbox]:checked{
+    background-color: hsla(0, 0%, 0%, 1);
 }

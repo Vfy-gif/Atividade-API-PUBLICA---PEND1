@@ -123,7 +123,7 @@ checkbox_metais_de_transicao.addEventListener('change', function() {
         const elements_number = [22,23,24,25,26,27,28,29,30,31,40,41,42,43,44,45,46,47,48,49,73,74,75,76,77,78,79,80,81,105,106,107,108,109]
         let i = 0
         for(i = 0; i < elements_number.length; i++){
-            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#CDC3B9'
+            tabela_periodica.children[elements_number[i]].style.backgroundColor = '#FFDD1B'
         }
     }
 })
