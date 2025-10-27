@@ -350,16 +350,19 @@ h3 {
     width: 20%;
     justify-self: end;
     position: absolute;
-    background-color: #255296;
+    background-color: white;
     margin-right: 1vw;
     margin-top: 2vh;
     object-fit: contain;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
 }
 .search input {
     height: 100%;
-    width: 100%;
-    border-radius: 20px;
+    width: 80%;
     border: 0;
     outline: 0;
     text-indent: 20px;
@@ -367,5 +370,4 @@ h3 {
 
 .search img {
     height: 70%;
-    margin-left: 90%;
 }
