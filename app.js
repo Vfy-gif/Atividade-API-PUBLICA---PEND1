@@ -6439,43 +6439,49 @@ checkbox_lantanideos.addEventListener('change', function () {
     }
 })
 
+let verify = 0;
+
 input_search.addEventListener('click', function () {
-    let background = document.createElement('div')
-    background.style.backgroundColor = 'rgba(0, 0, 0, 0.87)'
-    background.style.height = '100vh'
-    background.style.width = '100vw'
-    background.style.position = 'absolute'
-    background.style.marginTop = '-100vh'
-    background.style.animation = 'fadeIn 0.5s ease-out'
-    background.style.justifyContent = 'center'
-    background.style.alignItems = 'center'
-    background.style.display = 'flex'
-    background.style.flexDirection = 'column'
+
+    if (verify == 0) {
+
+        verify = 1;
+        let background = document.createElement('div')
+        background.style.backgroundColor = 'rgba(0, 0, 0, 0.87)'
+        background.style.height = '100vh'
+        background.style.width = '100vw'
+        background.style.position = 'absolute'
+        background.style.marginTop = '-100vh'
+        background.style.animation = 'fadeIn 0.5s ease-out'
+        background.style.justifyContent = 'center'
+        background.style.alignItems = 'center'
+        background.style.display = 'flex'
+        background.style.flexDirection = 'column'
 
 
-    div_search.style.justifySelf = 'center'
-    div_search.style.zIndex = '2'
-    div_search.style.width = '56.3542%'
-    div_search.style.height = '7.632%'
-    div_search.style.marginTop = '-14vh'
-    input_search.style.fontSize = '30px'
-    input_search.style.width = '90%'
-    div_search.style.transition = '1s'
+        div_search.style.justifySelf = 'center'
+        div_search.style.zIndex = '2'
+        div_search.style.width = '56.3542%'
+        div_search.style.height = '7.632%'
+        div_search.style.marginTop = '-14vh'
 
-    let listElements = document.createElement('div')
-    listElements.style.height = '76vh'
-    listElements.style.width = '73vw'
-    listElements.style.alignItems = 'center'
-    listElements.style.justifyContent = 'center'
-    listElements.style.overflow = 'auto'
-    listElements.style.marginTop = '25vh'
-    listElements.classList.add('barra-de-pesquisa')
-    listElements.classList.add('elemento-arrastavel')
-    listElements.id = 'listElements'
+        input_search.style.fontSize = '30px'
+        input_search.style.width = '90%'
+        div_search.style.transition = '1s'
 
-    body.appendChild(background)
-    background.appendChild(listElements)
-    try {
+        let listElements = document.createElement('div')
+        listElements.style.height = '76vh'
+        listElements.style.width = '73vw'
+        listElements.style.alignItems = 'center'
+        listElements.style.justifyContent = 'center'
+        listElements.style.overflow = 'auto'
+        listElements.style.marginTop = '25vh'
+        listElements.classList.add('barra-de-pesquisa')
+        listElements.classList.add('elemento-arrastavel')
+        listElements.id = 'listElements'
+
+        body.appendChild(background)
+        background.appendChild(listElements)
 
         let i = 0
         while (i < 118) {
@@ -6516,19 +6522,18 @@ input_search.addEventListener('click', function () {
             i++
         }
 
-    } catch (error) {
-        console.log(error)
-    }
 
-    background.addEventListener('click', function () {
-        body.removeChild(background)
-        div_search.style.justifySelf = 'right'
-        div_search.style.width = '20%'
-        div_search.style.height = '5%'
-        input_search.style.fontSize = '15px'
-        input_search.style.width = '80%'
-        div_search.style.marginTop = '2vh'
-    })
+        background.addEventListener('click', function () {
+            body.removeChild(background)
+            div_search.style.justifySelf = 'right'
+            div_search.style.width = '20%'
+            div_search.style.height = '5%'
+            input_search.style.fontSize = '15px'
+            input_search.style.width = '80%'
+            div_search.style.marginTop = '2vh'
+            verify = 0;
+        })
+    }
 })
 
 
@@ -6544,15 +6549,13 @@ async function getElements() {
 
 
 function InserirElemento() {
-    const elemento = document.getElementById('searchInput').value.toLowerCase()
+    const campo_inserido = document.getElementById('searchInput').value.toLowerCase().replace(/ /g, '').replace(/-/g, '')
     let listElements = document.getElementById('listElements')
     listElements.replaceChildren()
 
-
-
     for (let i = 0; i < 118; i++) {
         let NomeElementos = elementos[i].name
-        if (NomeElementos.toLowerCase() == elemento) {
+        if (NomeElementos.toLowerCase() == campo_inserido) {
             let elemento = document.createElement('div')
             let elemento_nome = document.createElement('h1')
             let elemento_imagem = document.createElement('img')
@@ -6584,6 +6587,337 @@ function InserirElemento() {
         }
     }
 
+    let i = 0
+    if (campo_inserido == 'metaisalcalinos' || campo_inserido == 'alkalimetals') {
+        while (i < metais_alcalinos.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[metais_alcalinos[i] - 2].name
+            elemento_nome.textContent = elementos[metais_alcalinos[i] - 2].name
+            elemento_imagem.src = elementos[metais_alcalinos[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'semimetais' || campo_inserido == 'semimetals') {
+        while (i < semimetais.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[semimetais[i] - 2].name
+            elemento_nome.textContent = elementos[semimetais[i] - 2].name
+            elemento_imagem.src = elementos[semimetais[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'actinideos' || campo_inserido == 'actinídeos' || campo_inserido == 'actinides') {
+        while (i < actinideos.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[actinideos[i] - 2].name
+            elemento_nome.textContent = elementos[actinideos[i] - 2].name
+            elemento_imagem.src = elementos[actinideos[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'metaisalcalinoterrosos' || campo_inserido == 'Alkalineearthmetals') {
+        while (i < metais_alcalinoterrosos.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[metais_alcalinoterrosos[i] - 2].name
+            elemento_nome.textContent = elementos[metais_alcalinoterrosos[i] - 2].name
+            elemento_imagem.src = elementos[metais_alcalinoterrosos[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'ametaisreativos' || campo_inserido == 'nonmetals' || campo_inserido == 'reactivenonmetals') {
+        while (i < ametais_reativos.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[ametais_reativos[i] - 2].name
+            elemento_nome.textContent = elementos[ametais_reativos[i] - 2].name
+            elemento_imagem.src = elementos[ametais_reativos[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'propriedadesdesconhecidas' || campo_inserido == 'unknownproperties') {
+        while (i < propriedades_desconhecidas.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[propriedades_desconhecidas[i] - 2].name
+            elemento_nome.textContent = elementos[propriedades_desconhecidas[i] - 2].name
+            elemento_imagem.src = elementos[propriedades_desconhecidas[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'metaisdetransicao' || campo_inserido == 'transitionmetals') {
+        while (i < metais_de_transicao.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[metais_de_transicao[i] - 2].name
+            elemento_nome.textContent = elementos[metais_de_transicao[i] - 2].name
+            elemento_imagem.src = elementos[metais_de_transicao[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'gasesnobres' || campo_inserido == 'noblegases') {
+        while (i < gases_nobres.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[gases_nobres[i] - 2].name
+            elemento_nome.textContent = elementos[gases_nobres[i] - 2].name
+            elemento_imagem.src = elementos[gases_nobres[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'metaispostransicao' || campo_inserido == 'metaispóstransicao' || campo_inserido == 'posttransitionmetals') {
+        while (i < metais_pos_transicao.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[metais_pos_transicao[i] - 2].name
+            elemento_nome.textContent = elementos[metais_pos_transicao[i] - 2].name
+            elemento_imagem.src = elementos[metais_pos_transicao[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
+    if (campo_inserido == 'lantanideos' || campo_inserido == 'lantanídeos' || campo_inserido == 'lanthanides') {
+        while (i < lantanideos.length) {
+            let elemento = document.createElement('div')
+            let elemento_nome = document.createElement('h1')
+            let elemento_imagem = document.createElement('img')
+            elemento.id = elementos[lantanideos[i] - 2].name
+            elemento_nome.textContent = elementos[lantanideos[i] - 2].name
+            elemento_imagem.src = elementos[lantanideos[i] - 2].bohr_model_image
+
+            elemento.style.backgroundColor = '#8B8686'
+            elemento.style.display = 'flex'
+            elemento.style.height = '25%'
+            elemento.style.width = '100%'
+            elemento.style.margin = '10px 0px'
+            elemento.style.justifyContent = 'left'
+            elemento.style.alignItems = 'center'
+            elemento.style.fontFamily = '"Inter", sans-serif'
+            elemento.classList.add('temp-element')
+
+            elemento_nome.style.fontWeight = '100'
+            elemento_nome.style.fontSize = '100px'
+            elemento_nome.style.color = 'rgba(0, 0, 0, 0.72)'
+
+            elemento_imagem.style.height = '90%'
+            elemento_imagem.style.borderRadius = '20px'
+            elemento_imagem.style.marginLeft = '59px'
+
+            listElements.appendChild(elemento)
+            elemento.appendChild(elemento_imagem)
+            elemento.appendChild(elemento_nome)
+            i++
+        }
+    }
 }
 
 
