@@ -12,8 +12,10 @@ const checkbox_metais_de_transicao              = document.getElementById('check
 const checkbox_gases_nobres                     = document.getElementById('checkbox-gases-nobres')
 const checkbox_metais_pos_transicao             = document.getElementById('checkbox-metais-pos-transicao')
 const checkbox_lantanideos                      = document.getElementById('checkbox-lantanideos')
-
-
+const div_search                                = document.getElementById('search')
+const input_search                              = document.getElementById('searchInput')
+const img_search                                = document.getElementById('searchImg')
+const body                                      = document.getElementById('body')
 
 
 checkbox_metais_alcalinos.addEventListener('change', function () {
@@ -174,4 +176,23 @@ checkbox_lantanideos.addEventListener('change', function () {
             tabela_periodica.children[elements_number[i]].style.backgroundColor = '#196262'
         }
     }
+})
+
+input_search.addEventListener('click', function () {
+    let background = document.createElement('div')
+    background.style.backgroundColor = 'rgba(0, 0, 0, 0.87)'
+    background.style.height          = '100vh'
+    background.style.width           = '100vw'
+    background.style.position        = 'absolute'
+    background.style.marginTop       = '-100vh'
+    background.style.animation       = 'fadeIn 0.5s ease-out'
+    body.appendChild(background)
+
+    div_search.style.justifySelf  = 'center'
+    div_search.style.zIndex       = '2'
+
+
+    background.addEventListener('click', function () {
+        body.removeChild(background)
+    })
 })
