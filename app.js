@@ -1,7 +1,6 @@
 'use strict'
 
 const tabela_periodica = document.getElementById('tabela_periodica')
-
 const checkbox_metais_alcalinos = document.getElementById('checkbox-metais-alcalinos')
 const checkbox_semimetais = document.getElementById('checkbox-semimetais')
 const checkbox_actinideos = document.getElementById('checkbox-actinideos')
@@ -12,9 +11,11 @@ const checkbox_metais_de_transicao = document.getElementById('checkbox-metais-de
 const checkbox_gases_nobres = document.getElementById('checkbox-gases-nobres')
 const checkbox_metais_pos_transicao = document.getElementById('checkbox-metais-pos-transicao')
 const checkbox_lantanideos = document.getElementById('checkbox-lantanideos')
+const checkbox_element_counts = document.getElementById('checkbox-element-counts')
 const div_search = document.getElementById('search')
 const input_search = document.getElementById('searchInput')
 const img_search = document.getElementById('searchImg')
+const element_counts = document.getElementById('element-counts')
 const body = document.getElementById('body')
 
 // Const feita devido a falhas no github
@@ -359,9 +360,6 @@ async function iniciarAplicacao() {
         }
     })
 }
-
-iniciarAplicacao()
-
 async function getElements() {
     const url = 'https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json'
     const response = await fetch(url)
@@ -369,7 +367,6 @@ async function getElements() {
 
     return dados
 }
-
 function InserirElemento() {
     const campo_inserido = document.getElementById('searchInput').value.toLowerCase().replace(/ /g, '').replace(/-/g, '')
     let listElements = document.getElementById('listElements')
@@ -741,11 +738,78 @@ function InserirElemento() {
         }
     }
 }
-
-
 img_search.addEventListener('click', InserirElemento)
 input_search.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         InserirElemento()
     }
 })
+
+checkbox_element_counts.addEventListener('click', function () {
+    let container_element = document.createElement('div')
+    let text_alert = document.createElement('h2')
+    let container_element_selects = document.createElement('div');
+    let result_element = document.createElement('div')
+    container_element_selects.id = 'container_element_selects'
+
+    tabela_periodica.addEventListener('click', function (event) {
+        console.log(event)
+        let elemento_clicado = event.target.closest('.elemento')
+        if (elemento_clicado && tabela_periodica.contains(elemento_clicado)) {
+            let simbolo = elemento_clicado.querySelector('a').textContent
+
+            PegarELementoMistura(simbolo)
+
+        }
+
+    })
+
+
+    container_element_selects.classList.add('container_element_selects')
+    container_element.classList.add('container-elements')
+    text_alert.textContent = 'Selecionei dois ou mais elementos!!!'
+    result_element.classList.add('container_element_selects')
+
+
+    element_counts.appendChild(text_alert)
+    element_counts.appendChild(container_element)
+    container_element.appendChild(container_element_selects)
+    container_element.appendChild(result_element)
+})
+
+
+async function PegarELementoMistura(simboloSelecionado) {
+
+    const dados = await getElements()
+    const elementos = dados.elements
+
+    let container_element_selects = document.getElementById('container_element_selects')
+
+
+    elementos.forEach(function (element) {
+        if (element.symbol == simboloSelecionado) {
+            let elemento = document.createElement('div')
+            let numero_elemento = document.createElement('h1')
+            let simbolo = document.createElement('a')
+            let nome_elemento = document.createElement('h2')
+            let massa_elemento = document.createElement('h3')
+
+            numero_elemento.textContent = element.number
+            simbolo.textContent = element.symbol
+            nome_elemento.textContent = element.name
+            massa_elemento.textContent = element.atomic_mass
+
+            elemento.classList.add('container_element_select')
+
+            container_element_selects.appendChild(elemento)
+            elemento.appendChild(numero_elemento)
+            elemento.appendChild(simbolo)
+            elemento.appendChild(nome_elemento)
+            elemento.appendChild(massa_elemento)
+        }
+    })
+
+}
+
+
+iniciarAplicacao()
