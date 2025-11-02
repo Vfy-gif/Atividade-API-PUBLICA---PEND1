@@ -6447,11 +6447,13 @@ input_search.addEventListener('click', function () {
 
         verify = 1;
         let background = document.createElement('div')
+
         background.style.backgroundColor = 'rgba(0, 0, 0, 0.87)'
         background.style.height = '100vh'
         background.style.width = '100vw'
-        background.style.position = 'absolute'
-        background.style.marginTop = '-100vh'
+        background.style.position = 'fixed'
+        background.style.top = '0'
+        background.style.left = '0'
         background.style.animation = 'fadeIn 0.5s ease-out'
         background.style.justifyContent = 'center'
         background.style.alignItems = 'center'
@@ -6459,11 +6461,9 @@ input_search.addEventListener('click', function () {
         background.style.flexDirection = 'column'
 
 
-        div_search.style.justifySelf = 'center'
-        div_search.style.zIndex = '2'
-        div_search.style.width = '56.3542%'
-        div_search.style.height = '7.632%'
-        div_search.style.marginTop = '-14vh'
+        div_search.classList.add('div-search-click')
+
+
 
         input_search.style.fontSize = '30px'
         input_search.style.width = '90%'
@@ -6506,6 +6506,7 @@ input_search.addEventListener('click', function () {
             elemento_imagem.style.height = '90%'
             elemento_imagem.style.borderRadius = '20px'
             elemento_imagem.style.marginLeft = '59px'
+            elemento_imagem.setAttribute('draggable', 'false');
 
 
             elemento.id = elementos[i].name
@@ -6518,19 +6519,107 @@ input_search.addEventListener('click', function () {
 
             elemento.addEventListener('click', function (event) {
                 event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element                    = document.createElement('div')
+                    let exit_image                      = document.createElement('img')
+
+                    exit_image.src                      = './img/weui_arrow-filled.svg'
+                    exit_image.style.height             = '100%'
+                    exit_image.style.width              = '100%'
+                    exit_image.style.objectFit          = 'cover'
+                    exit_image.setAttribute('draggable', 'false');
+
+                    exit_element.style.height           = '93px'
+                    exit_element.style.width            = '43px'
+                    exit_element.style.position         = 'absolute'
+                    exit_element.style.top              = '30px'
+                    exit_element.style.left             = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+                        
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+                        
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition    = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
             })
             i++
         }
 
-
         background.addEventListener('click', function () {
             body.removeChild(background)
-            div_search.style.justifySelf = 'right'
-            div_search.style.width = '20%'
-            div_search.style.height = '5%'
+            div_search.classList.remove('div-search-click')
             input_search.style.fontSize = '15px'
             input_search.style.width = '80%'
-            div_search.style.marginTop = '2vh'
             verify = 0;
         })
     }
