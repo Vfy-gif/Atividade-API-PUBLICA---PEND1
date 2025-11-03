@@ -788,7 +788,7 @@ async function PegarELementoMistura(simboloSelecionado) {
     let container_element_selects = document.getElementById('container_element_selects')
 
 
-    elementos.forEach(function (element) {
+    elementos.forEach( function (element) {
         if (element.symbol == simboloSelecionado) {
             let elemento = document.createElement('div')
             let numero_elemento = document.createElement('h1')
@@ -818,6 +818,7 @@ async function PegarELementoMistura(simboloSelecionado) {
 
                 if (elemento_deletado && container_element_selects.contains(elemento_deletado)) {
                     container_element_selects.removeChild(elemento_deletado)
+
                 }
 
             })
