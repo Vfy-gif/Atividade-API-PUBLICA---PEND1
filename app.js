@@ -408,17 +408,7 @@ async function InserirElemento() {
             elemento.appendChild(elemento_nome)
         }
     }
-
-    const metais_alcalinos = [4, 12, 20, 38, 56, 88]
-    const semimetais = [6, 15, 33, 34, 52, 53]
-    const actinideos = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
-    const metais_alcalinoterrosos = [5, 13, 21, 39, 57, 89]
-    const ametais_reativos = [2, 7, 8, 9, 10, 16, 17, 18, 35, 36, 54]
-    const propriedades_desconhecidas = [110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
-    const metais_de_transicao = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 73, 74, 75, 76, 77, 78, 79, 80, 81, 105, 106, 107, 108, 109]
-    const gases_nobres = [3, 11, 19, 37, 55, 87]
-    const metais_pos_transicao = [14, 32, 50, 51, 82, 83, 84, 85, 86]
-    const lantanideos = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104]
+    
     let i = 0
     if (campo_inserido == 'metaisalcalinos' || campo_inserido == 'alkalimetals') {
         while (i < metais_alcalinos.length) {
