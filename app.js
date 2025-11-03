@@ -408,7 +408,7 @@ async function InserirElemento() {
             elemento.appendChild(elemento_nome)
         }
     }
-    
+
     let i = 0
     if (campo_inserido == 'metaisalcalinos' || campo_inserido == 'alkalimetals') {
         while (i < metais_alcalinos.length) {
@@ -795,19 +795,32 @@ async function PegarELementoMistura(simboloSelecionado) {
             let simbolo = document.createElement('a')
             let nome_elemento = document.createElement('h2')
             let massa_elemento = document.createElement('h3')
+            let delete_elemento = document.createElement('img')
 
             numero_elemento.textContent = element.number
             simbolo.textContent = element.symbol
             nome_elemento.textContent = element.name
-            massa_elemento.te = element.atomic_mass
+            massa_elemento.textContent = element.atomic_mass
+            delete_elemento.src = './img/delete.svg'
 
             elemento.classList.add('container_element_select')
 
             container_element_selects.appendChild(elemento)
+            elemento.appendChild(delete_elemento)
             elemento.appendChild(numero_elemento)
             elemento.appendChild(simbolo)
             elemento.appendChild(nome_elemento)
             elemento.appendChild(massa_elemento)
+
+            delete_elemento.addEventListener('click', function (event) {
+                event.stopPropagation()
+                let elemento_deletado = event.target.closest('.container_element_select')
+
+                if (elemento_deletado && container_element_selects.contains(elemento_deletado)) {
+                    container_element_selects.removeChild(elemento_deletado)
+                }
+
+            })
         }
     })
 
