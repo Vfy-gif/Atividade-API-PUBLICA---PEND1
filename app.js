@@ -197,10 +197,7 @@ async function iniciarAplicacao() {
             background.style.display = 'flex'
             background.style.flexDirection = 'column'
 
-
             div_search.classList.add('div-search-click')
-
-
 
             input_search.style.fontSize = '30px'
             input_search.style.width = '90%'
@@ -406,8 +403,114 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
         }
     }
+
+    const metais_alcalinos = [4, 12, 20, 38, 56, 88]
+    const semimetais = [6, 15, 33, 34, 52, 53]
+    const actinideos = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
+    const metais_alcalinoterrosos = [5, 13, 21, 39, 57, 89]
+    const ametais_reativos = [2, 7, 8, 9, 10, 16, 17, 18, 35, 36, 54]
+    const propriedades_desconhecidas = [110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
+    const metais_de_transicao = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 73, 74, 75, 76, 77, 78, 79, 80, 81, 105, 106, 107, 108, 109]
+    const gases_nobres = [3, 11, 19, 37, 55, 87]
+    const metais_pos_transicao = [14, 32, 50, 51, 82, 83, 84, 85, 86]
+    const lantanideos = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104]
 
     let i = 0
     if (campo_inserido == 'metaisalcalinos' || campo_inserido == 'alkalimetals') {
@@ -416,7 +519,11 @@ async function InserirElemento() {
             let elemento_nome = document.createElement('h1')
             let elemento_imagem = document.createElement('img')
             elemento.id = elementos[metais_alcalinos[i] - 2].name
+
             elemento_nome.textContent = elementos[metais_alcalinos[i] - 2].name
+
+            elemento_nome.id = elemento_nome.textContent
+
             elemento_imagem.src = elementos[metais_alcalinos[i] - 2].bohr_model_image
 
             elemento.style.backgroundColor = '#8B8686'
@@ -440,6 +547,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -473,6 +675,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -506,6 +803,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -539,6 +931,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -572,6 +1059,100 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -605,6 +1186,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -638,6 +1314,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -671,6 +1442,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -704,6 +1570,101 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
@@ -737,11 +1698,107 @@ async function InserirElemento() {
             listElements.appendChild(elemento)
             elemento.appendChild(elemento_imagem)
             elemento.appendChild(elemento_nome)
+
+            elemento.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                if (!elemento.classList.contains('element-select')) {
+                    const todosOsElementos = listElements.querySelectorAll('.temp-element');
+                    todosOsElementos.forEach(outroElemento => {
+                        if (outroElemento !== elemento) {
+                            outroElemento.style.display = 'none';
+                        }
+                    });
+
+                    elemento.classList.add('element-select');
+
+
+                    let container = document.createElement('div')
+                    elemento.style.transition = '1s'
+                    elemento.style.justifyContent = 'center'
+                    elemento.style.height = '90%'
+                    elemento.style.position = 'relative'
+
+                    container.style.display = 'grid'
+                    container.style.alignItems = 'center'
+                    container.style.justifyContent = 'center'
+                    container.style.placeItems = 'center'
+                    container.style.width = '80%'
+
+                    elemento_nome.style.marginLeft = '50px'
+
+                    elemento_imagem.style.height = '297px'
+                    elemento_imagem.style.width = '487px'
+
+
+                    let exit_element = document.createElement('div')
+                    let exit_image = document.createElement('img')
+
+                    exit_image.src = './img/weui_arrow-filled.svg'
+                    exit_image.style.height = '100%'
+                    exit_image.style.width = '100%'
+                    exit_image.style.objectFit = 'cover'
+
+                    exit_element.style.height = '93px'
+                    exit_element.style.width = '43px'
+                    exit_element.style.position = 'absolute'
+                    exit_element.style.top = '30px'
+                    exit_element.style.left = '50px'
+
+                    exit_element.appendChild(exit_image)
+
+                    exit_element.addEventListener('click', function (event) {
+
+                        event.stopPropagation();
+                        todosOsElementos.forEach(outroElemento => {
+                            if (outroElemento !== elemento) {
+                                outroElemento.style.display = 'flex'
+                            }
+                        })
+
+                        elemento.appendChild(elemento_imagem)
+                        elemento.appendChild(elemento_nome)
+
+
+                        exit_element.remove();
+                        container.remove()
+
+                        elemento.classList.remove('element-select')
+                        elemento.style.transition = '0.8s'
+                        elemento.style.justifyContent = 'left'
+                        elemento.style.height = '25%'
+                        elemento.style.position = 'static'
+
+                        elemento_imagem.style.height = '90%'
+                        elemento_imagem.style.width = ''
+                        elemento_imagem.style.marginLeft = '59px'
+
+                        elemento_nome.style.marginLeft = ''
+                    })
+
+
+                    elemento.appendChild(exit_element)
+                    elemento.appendChild(container)
+                    container.appendChild(elemento_imagem)
+                    container.appendChild(elemento_nome)
+
+                    let i = 0
+                    while (i < 118) {
+                        if (elementos[i].name == elemento_nome.textContent) {
+                            let elemento_descricao = document.createElement('h1')
+                            elemento_descricao.textContent = elementos[i].summary
+                            container.appendChild(elemento_descricao)
+                        }
+                        i++
+                    }
+                }
+            })
             i++
         }
     }
 }
 img_search.addEventListener('click', InserirElemento)
+
 input_search.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         InserirElemento()
@@ -755,15 +1812,26 @@ checkbox_element_counts.addEventListener('click', function () {
     let result_element = document.createElement('div')
     container_element_selects.id = 'container_element_selects'
 
+
+    const contagemCliques = {};
     tabela_periodica.addEventListener('click', function (event) {
         let elemento_clicado = event.target.closest('.elemento')
         if (elemento_clicado && tabela_periodica.contains(elemento_clicado)) {
             let simbolo = elemento_clicado.querySelector('a').textContent
 
-            PegarELementoMistura(simbolo)
+            let style_do_elemento = window.getComputedStyle(elemento_clicado)
+
+            if (contagemCliques[simbolo] === undefined) {
+                contagemCliques[simbolo] = 1;
+            } else {
+                contagemCliques[simbolo]++;
+            }
+
+            const cliquesAtuais = contagemCliques[simbolo];
+
+            PegarELementoMistura(simbolo, cliquesAtuais, style_do_elemento)
 
         }
-
     })
 
 
@@ -780,7 +1848,7 @@ checkbox_element_counts.addEventListener('click', function () {
 })
 
 
-async function PegarELementoMistura(simboloSelecionado) {
+async function PegarELementoMistura(simboloSelecionado, cliquesAtuais, elemento_clicado) {
 
     const dados = await getElements()
     const elementos = dados.elements
@@ -788,40 +1856,67 @@ async function PegarELementoMistura(simboloSelecionado) {
     let container_element_selects = document.getElementById('container_element_selects')
 
 
-    elementos.forEach( function (element) {
+    elementos.forEach(function (element) {
         if (element.symbol == simboloSelecionado) {
-            let elemento = document.createElement('div')
-            let numero_elemento = document.createElement('h1')
-            let simbolo = document.createElement('a')
-            let nome_elemento = document.createElement('h2')
-            let massa_elemento = document.createElement('h3')
-            let delete_elemento = document.createElement('img')
 
-            numero_elemento.textContent = element.number
-            simbolo.textContent = element.symbol
-            nome_elemento.textContent = element.name
-            massa_elemento.textContent = element.atomic_mass
-            delete_elemento.src = './img/delete.svg'
+            if (cliquesAtuais == '1') {
+                let elemento = document.createElement('div')
+                let numero_elemento = document.createElement('h1')
+                let simbolo = document.createElement('a')
+                let nome_elemento = document.createElement('h2')
+                let massa_elemento = document.createElement('h3')
+                let delete_elemento = document.createElement('img')
+                let sinais_modificacao = document.createElement('div')
+                let adicao = document.createElement('h1')
+                let subtracao = document.createElement('h1')
+                let quantidade_elementos = document.createElement('h2')
 
-            elemento.classList.add('container_element_select')
 
-            container_element_selects.appendChild(elemento)
-            elemento.appendChild(delete_elemento)
-            elemento.appendChild(numero_elemento)
-            elemento.appendChild(simbolo)
-            elemento.appendChild(nome_elemento)
-            elemento.appendChild(massa_elemento)
+                elemento.style.backgroundColor = elemento_clicado.backgroundColor
+                elemento.id = `elemento-selecionado-${simboloSelecionado}`;
 
-            delete_elemento.addEventListener('click', function (event) {
-                event.stopPropagation()
-                let elemento_deletado = event.target.closest('.container_element_select')
+                quantidade_elementos.id = `quantidade-${simboloSelecionado}`;
+                numero_elemento.textContent = element.number
+                simbolo.textContent = element.symbol
+                nome_elemento.textContent = element.name
+                massa_elemento.textContent = element.atomic_mass
+                adicao.textContent = '+'
+                subtracao.textContent = '-'
 
-                if (elemento_deletado && container_element_selects.contains(elemento_deletado)) {
-                    container_element_selects.removeChild(elemento_deletado)
+                quantidade_elementos.textContent = `${cliquesAtuais}`
+                delete_elemento.src = './img/delete.svg'
 
+                elemento.classList.add('container_element_select')
+                sinais_modificacao.classList.add('sinais-modificacao')
+
+                container_element_selects.appendChild(elemento)
+
+                elemento.appendChild(delete_elemento)
+                elemento.appendChild(numero_elemento)
+                elemento.appendChild(simbolo)
+                elemento.appendChild(nome_elemento)
+                elemento.appendChild(massa_elemento)
+                elemento.appendChild(sinais_modificacao)
+                sinais_modificacao.appendChild(adicao)
+                sinais_modificacao.appendChild(quantidade_elementos)
+                sinais_modificacao.appendChild(subtracao)
+
+                delete_elemento.addEventListener('click', function (event) {
+                    event.stopPropagation()
+                    let elemento_deletado = event.target.closest('.container_element_select')
+                    if (elemento_deletado && container_element_selects.contains(elemento_deletado)) {
+                        
+                        container_element_selects.removeChild(elemento_deletado)
+                    }
+
+                })
+            } else {
+                const quantidadeElemento = document.getElementById(`quantidade-${simboloSelecionado}`);
+
+                if (quantidadeElemento) {
+                    quantidadeElemento.textContent = `${cliquesAtuais}`;
                 }
-
-            })
+            }
         }
     })
 

@@ -601,12 +601,11 @@ h3 {
 
 
 .container_element_select {
-    height: 150px;
+    height: 140px;
     width: 170px;
     border: 1px solid black;
     font-family: "Itim", cursive;
     padding-left: 3px;
-    padding-bottom: 50px;
     padding-right: 48px;
     justify-content: center;
     align-items: center;
@@ -641,3 +640,43 @@ h2,
 h3 {
     margin-left: 45px;
 }
+
+.container_element_select h2{
+    color: black;
+}
+
+.sinais-modificacao {
+    height: 30px;
+    width: 151%;
+    background-color: #616DBF;
+    margin-right: -45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.sinais-modificacao h1 {
+    height: 100%;
+    width: 25%;
+    margin-left: 0;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-top: 0px;
+    color: white;
+}
+
+.sinais-modificacao h2 {
+    height: 70%;
+    width: 50%;
+    margin-left: 0px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+}
+
