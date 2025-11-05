@@ -1805,11 +1805,15 @@ input_search.addEventListener('keydown', function (event) {
     }
 })
 
-checkbox_element_counts.addEventListener('click', function () {
+checkbox_element_counts.addEventListener('change', function () {
+
+    if (this.checked) {
     let container_element = document.createElement('div')
     let text_alert = document.createElement('h2')
     let container_element_selects = document.createElement('div');
     let result_element = document.createElement('div')
+    text_alert.id = 'text_alert'
+    container_element.id = 'container_elements'
     container_element_selects.id = 'container_element_selects'
 
 
@@ -1845,6 +1849,13 @@ checkbox_element_counts.addEventListener('click', function () {
     element_counts.appendChild(container_element)
     container_element.appendChild(container_element_selects)
     container_element.appendChild(result_element)
+    } else {
+        let container_elements = document.getElementById('container_elements')
+        let text_alert         = document.getElementById('text_alert')
+        container_elements.remove()
+        text_alert.remove()
+
+    }
 })
 
 
@@ -1854,7 +1865,6 @@ async function PegarELementoMistura(simboloSelecionado, cliquesAtuais, elemento_
     const elementos = dados.elements
 
     let container_element_selects = document.getElementById('container_element_selects')
-
 
     elementos.forEach(function (element) {
         if (element.symbol == simboloSelecionado) {
@@ -1905,8 +1915,8 @@ async function PegarELementoMistura(simboloSelecionado, cliquesAtuais, elemento_
                     event.stopPropagation()
                     let elemento_deletado = event.target.closest('.container_element_select')
                     if (elemento_deletado && container_element_selects.contains(elemento_deletado)) {
-                        
                         container_element_selects.removeChild(elemento_deletado)
+                        cliquesAtuais = 0
                     }
 
                 })
